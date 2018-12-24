@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.nikochen.officialwebsite.user.mapper.UserInfoMapper">
+
+    <resultMap id="BaseResultMap" type="top.nikochen.officialwebsite.user.entity.UserInfo">
+        <constructor>
+            <arg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+            <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="phone" javaType="java.lang.Integer" jdbcType="VARCHAR" />
+            <arg column="message" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="sex" javaType="java.lang.String" jdbcType="INTEGER" />
+        </constructor>
+    </resultMap>
+
+
+</mapper>
