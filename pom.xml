@@ -131,11 +131,11 @@
 			<artifactId>freemarker</artifactId>
 		</dependency>
 
-         <!--邮件-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>
+         <!--&lt;!&ndash;邮件&ndash;&gt;-->
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-mail</artifactId>-->
+		<!--</dependency>-->
 
 
 

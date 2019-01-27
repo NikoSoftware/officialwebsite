@@ -12,8 +12,6 @@ public class HomeControl {
 
     @RequestMapping("/")
     public String getHome(){
-
-
       return "index.html";
     }
 
