@@ -4,6 +4,7 @@ package top.nikochen.officialwebsite.control;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
@@ -24,17 +25,17 @@ public class HomeControl {
 
     @RequestMapping("/")
     public String getHome(){
-      return "index.html";
+      return "index";
     }
 
 
 
     @RequestMapping("/compositeImage")
-    public String getImage(){
+    public ModelAndView getImage(){
 
         File file  = new File("src/main/resources/static/images/year-image.jpg");
         Date date = new Date();
-        File outputFile  = new File("src/main/resources/static/cacheImage/"+date.getTime()+"image.jpg");
+        File outputFile  = new File("src/main/resources/static/cacheImage/"+date.getTime()+"image.jpeg");
         try {
             outputFile.createNewFile();
             BufferedImage image = ImageIO.read(file);
@@ -50,18 +51,41 @@ public class HomeControl {
             FontMetrics  fm=new JLabel().getFontMetrics(font);
 
             graphics2D.drawString("新年快乐",width/2-fm.stringWidth("新年快乐")/2,height/2+100);
+
+            String content = "除夕夜祝大家新年快乐，万事如意，阖家幸福 除夕夜祝大家新年快乐，万事如意，阖家幸福";
+
+            int size =  fm.stringWidth("新");
+            int lineSize = (width-400)/size;
+
+            for (int i = 0; i < content.length(); i = i+lineSize) {
+
+
+                graphics2D.drawString(content.substring(i,i+lineSize>content.length()? content.length():i+lineSize),200,
+                        height/2+100+(fm.getHeight()*(i/lineSize+1)));
+
+            }
+
+
+
+
+
             graphics2D.dispose();
 
             ImageOutputStream imageOutputStream = ImageIO
                     .createImageOutputStream(new FileOutputStream(outputFile));
-            ImageIO .write(image, "JPEG", imageOutputStream);
-
-
+            ImageIO.write(image, "JPEG", imageOutputStream);
+            imageOutputStream.flush();
+            imageOutputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String cacheImagePath = outputFile.getPath();
-        return "imageSuccess.html";
+        String cacheImagePath = outputFile.getName();
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("imageSuccess");
+        modelAndView.addObject("cacheImagePath",cacheImagePath);
+
+        return modelAndView;
     }
 
 
