@@ -259,8 +259,10 @@ a:hover, a:active, a:focus {
 
 .custom-navbar .navbar-brand {
   color: #f9f9f9;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-weight: normal;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .custom-navbar .nav li a {
