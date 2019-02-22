@@ -76,4 +76,16 @@ public class ClientMsgController {
     }
 
 
+
+
+    @ResponseBody
+    @RequestMapping("/getClientMsg")
+    public String getTestJson(String id){
+
+       ClientMsg clientMsg =  clientMsgMapper.selectById(id);
+
+        return clientMsg==null? "{}":clientMsg.toString();
+    }
+
+
 }
