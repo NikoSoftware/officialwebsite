@@ -15,6 +15,8 @@ import top.nikochen.officialwebsite.client.mapper.ClientMsgMapper;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -25,7 +27,7 @@ import java.time.LocalDateTime;
  * @since 2018-12-26
  */
 @Controller
-@RequestMapping("/client/client-msg")
+@RequestMapping("/client")
 public class ClientMsgController {
 
     @Value("${spring.mail.username}")
@@ -85,6 +87,14 @@ public class ClientMsgController {
        ClientMsg clientMsg =  clientMsgMapper.selectById(id);
 
         return clientMsg==null? "{}":clientMsg.toString();
+    }
+    @ResponseBody
+    @RequestMapping("/getAllMsg")
+    public String getAllMsg(){
+
+        List<ClientMsg> clientMsgs =  clientMsgMapper.selectList(null);
+
+        return clientMsgs==null? "{}":clientMsgs.toString();
     }
 
 
