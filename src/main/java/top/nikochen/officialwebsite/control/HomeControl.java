@@ -2,6 +2,7 @@ package top.nikochen.officialwebsite.control;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,8 +26,22 @@ public class HomeControl {
 
 
     @RequestMapping("/")
-    public String getHome(){
-      return "index";
+    public ModelAndView getHome(@RequestHeader(value="User-Agent") String device){
+        ModelAndView modelAndView = new ModelAndView();
+        //
+        String[] deviceArray = new String[]{"android","iPhone"};
+        String deviceType = "PC";
+        for (String s : deviceArray) {
+            if(device.contains(s)){//移动设备
+                deviceType="Mobile";
+                break;
+            }
+        }
+
+        modelAndView.addObject("deviceType",deviceType);
+        modelAndView.setViewName("index");
+
+      return modelAndView;
     }
 
 
