@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import top.nikochen.officialwebsite.face.FaceDetect;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
@@ -24,37 +25,32 @@ import java.util.Date;
 public class HomeControl {
 
 
-
     @RequestMapping("/")
-    public ModelAndView getHome(@RequestHeader(value="User-Agent") String device){
-        ModelAndView modelAndView = new ModelAndView();
-        //
-        String[] deviceArray = new String[]{"android","iPhone"};
-        String deviceType = "PC";
-        for (String s : deviceArray) {
-            if(device.contains(s)){//移动设备
-                deviceType="Mobile";
-                break;
+    public String getHome(@RequestHeader(value = "User-Agent") String device) {
+
+        String[] deviceArray = new String[]{"android", "iPhone"};
+
+        if (device != null) {
+            for (String s : deviceArray) {
+                if (device.toLowerCase().contains(s.toLowerCase())) {//移动设备
+                    return "indexPhone";
+                }
             }
         }
 
-        modelAndView.addObject("deviceType",deviceType);
-        modelAndView.setViewName("index");
-
-      return modelAndView;
+        return "index";
     }
 
 
-
     @RequestMapping("/compositeImage")
-    public ModelAndView getImage(){
+    public ModelAndView getImage() {
 
-        File file  = new File("src/main/resources/static/images/year-image.jpg");
-        File qrFile  = new File("src/main/resources/static/images/qrimage.png");
+        File file = new File("src/main/resources/static/images/year-image.jpg");
+        File qrFile = new File("src/main/resources/static/images/qrimage.png");
 
         Date date = new Date();
-        File outputFile  = new File("src/main/resources/static/cacheImage/"+date.getTime()+"image.jpeg");
-      //  File outputFile  = new File("C:/Users/niko/Desktop/cacheImage/"+date.getTime()+"image.jpeg");
+        File outputFile = new File("src/main/resources/static/cacheImage/" + date.getTime() + "image.jpeg");
+        //  File outputFile  = new File("C:/Users/niko/Desktop/cacheImage/"+date.getTime()+"image.jpeg");
 
         try {
             outputFile.createNewFile();
@@ -62,28 +58,28 @@ public class HomeControl {
             int width = image.getWidth();
             int height = image.getHeight();
             Graphics2D graphics2D = image.createGraphics();
-            graphics2D.setColor(new Color(253,242,191));
-            Font font = new Font("宋体",Font.BOLD,50);
+            graphics2D.setColor(new Color(253, 242, 191));
+            Font font = new Font("宋体", Font.BOLD, 50);
             graphics2D.setFont(font);
-            FontMetrics  fm=new JLabel().getFontMetrics(font);
-            graphics2D.drawString("新年快乐",width/2-fm.stringWidth("新年快乐")/2,height/2+100);
+            FontMetrics fm = new JLabel().getFontMetrics(font);
+            graphics2D.drawString("新年快乐", width / 2 - fm.stringWidth("新年快乐") / 2, height / 2 + 100);
             String content = "除夕夜祝大家新年快乐，万事如意，阖家幸福 除夕夜祝大家新年快乐，万事如意，阖家幸福";
 
-            int size =  fm.stringWidth("新");
-            int lineSize = (width-400)/size;
-            for (int i = 0; i < content.length(); i = i+lineSize) {
-                graphics2D.drawString(content.substring(i,i+lineSize>content.length()? content.length():i+lineSize),200,
-                        height/2+100+(fm.getHeight()*(i/lineSize+1)));
+            int size = fm.stringWidth("新");
+            int lineSize = (width - 400) / size;
+            for (int i = 0; i < content.length(); i = i + lineSize) {
+                graphics2D.drawString(content.substring(i, i + lineSize > content.length() ? content.length() : i + lineSize), 200,
+                        height / 2 + 100 + (fm.getHeight() * (i / lineSize + 1)));
             }
             BufferedImage qrImage = ImageIO.read(qrFile);
 
             graphics2D.drawImage(qrImage, width - 200, height - 200,
                     width, height, new ImageObserver() {
-                @Override
-                public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
-                    return false;
-                }
-            });
+                        @Override
+                        public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
+                            return false;
+                        }
+                    });
             graphics2D.dispose();
             FileOutputStream os = new FileOutputStream(outputFile);
             ImageOutputStream imageOutputStream = ImageIO
@@ -99,11 +95,16 @@ public class HomeControl {
         String cacheImagePath = outputFile.getName();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("imageSuccess");
-        modelAndView.addObject("cacheImagePath",cacheImagePath);
+        modelAndView.addObject("cacheImagePath", cacheImagePath);
         return modelAndView;
     }
 
+    @ResponseBody
+    @RequestMapping("/getFace")
+    public String getFace() {
 
+        return FaceDetect.detect();
+    }
 
 
 }

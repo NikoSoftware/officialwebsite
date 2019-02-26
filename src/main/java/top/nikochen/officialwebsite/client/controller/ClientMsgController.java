@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import com.alibaba.fastjson.JSON;
 import java.util.List;
 
 /**
@@ -94,7 +95,7 @@ public class ClientMsgController {
 
         List<ClientMsg> clientMsgs =  clientMsgMapper.selectList(null);
 
-        return clientMsgs==null? "{}":clientMsgs.toString();
+        return JSON.toJSONString(clientMsgs);
     }
 
 
