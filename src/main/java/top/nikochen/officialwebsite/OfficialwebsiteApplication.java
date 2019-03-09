@@ -24,6 +24,7 @@ public class OfficialwebsiteApplication {
         return new CorsFilter(source);
     }
 
+
     private CorsConfiguration buildConfig(){
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedOrigin("*");
@@ -31,8 +32,6 @@ public class OfficialwebsiteApplication {
         corsConfiguration.addAllowedMethod("*");
         return corsConfiguration;
     }
-
-
 
 
     public static void main(String[] args) {
