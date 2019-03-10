@@ -94,7 +94,7 @@ public class ClientMsgController {
     @RequestMapping("/getAllMsg")
     public String getAllMsg(){
         QueryWrapper<ClientMsg> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByDesc();
+        queryWrapper.orderByDesc("id");
         List<ClientMsg> clientMsgs =  clientMsgMapper.selectList(queryWrapper);
 
         return JSON.toJSONString(clientMsgs);
