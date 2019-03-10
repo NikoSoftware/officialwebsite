@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 @Order(2)
 @Component
 public class CorsAop {
-    @Pointcut("@annotation(com.cjnbms.commons.config.CORS)")
+    @Pointcut("@annotation(top.nikochen.officialwebsite.conf.CORS)")
     public void pointcut() {}
     private Logger log = LoggerFactory.getLogger(CorsAop.class);
 
