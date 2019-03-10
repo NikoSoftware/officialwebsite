@@ -29,6 +29,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/client")
+@CrossOrigin
 public class ClientMsgController {
 
     @Value("${spring.mail.username}")
