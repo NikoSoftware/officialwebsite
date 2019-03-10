@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import com.alibaba.fastjson.JSON;
+import top.nikochen.officialwebsite.conf.CORS;
+
 import java.util.List;
 
 /**
@@ -29,7 +31,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/client")
-@CrossOrigin
+@CORS
 public class ClientMsgController {
 
     @Value("${spring.mail.username}")
