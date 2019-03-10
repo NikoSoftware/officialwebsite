@@ -19,7 +19,6 @@ public class OfficialwebsiteApplication {
      * @return
      */
     @Bean
-    @Order(Integer.MAX_VALUE)
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", buildConfig());

@@ -1,5 +1,6 @@
 package top.nikochen.officialwebsite.client.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,6 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/client")
-@CORS
 public class ClientMsgController {
 
     @Value("${spring.mail.username}")
@@ -78,10 +78,7 @@ public class ClientMsgController {
         mainMessage.setText(data);
         jms.send(mainMessage);
         return "redirect:"+request.getContextPath()+"/";
-
     }
-
-
 
 
 
@@ -90,14 +87,15 @@ public class ClientMsgController {
     public String getTestJson(String id){
 
        ClientMsg clientMsg =  clientMsgMapper.selectById(id);
-
         return clientMsg==null? "{}":clientMsg.toString();
     }
+
     @ResponseBody
     @RequestMapping("/getAllMsg")
     public String getAllMsg(){
-
-        List<ClientMsg> clientMsgs =  clientMsgMapper.selectList(null);
+        QueryWrapper<ClientMsg> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc();
+        List<ClientMsg> clientMsgs =  clientMsgMapper.selectList(queryWrapper);
 
         return JSON.toJSONString(clientMsgs);
     }
