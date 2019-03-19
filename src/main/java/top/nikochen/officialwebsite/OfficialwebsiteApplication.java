@@ -29,9 +29,10 @@ public class OfficialwebsiteApplication {
     private CorsConfiguration buildConfig(){
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.addAllowedOrigin("*");
-        corsConfiguration.addAllowedHeader("*");
-        corsConfiguration.addAllowedMethod("*");
+        corsConfiguration.addAllowedOrigin(CorsConfiguration.ALL);
+        corsConfiguration.addAllowedHeader(CorsConfiguration.ALL);
+        corsConfiguration.addAllowedMethod(CorsConfiguration.ALL);
+        corsConfiguration.setMaxAge(3600L);
         return corsConfiguration;
     }
 
