@@ -11,8 +11,8 @@
 	<groupId>top.nikochen</groupId>
 	<artifactId>officialwebsite</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<name>officialwebsite</name>
+	<packaging>jar</packaging>
+	<name>xiaomotou-official</name>
 	<description>Official website project for Spring Boot</description>
 
 	<properties>
@@ -91,7 +91,11 @@
 			<version>3.0.6</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.3.6.Final</version>
+		</dependency>
 
 
 		<dependency>

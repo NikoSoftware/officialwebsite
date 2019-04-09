@@ -17,6 +17,7 @@ import top.nikochen.officialwebsite.client.mapper.ClientMsgMapper;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -45,15 +46,15 @@ public class ClientMsgController {
     @RequestMapping(value = "/submitMessage")
     public String submitMessage(@RequestHeader(value = "User-Agent") String device,
                                 HttpServletRequest request,
-                                String name, String email, String title, String message) {
+                                @Valid ClientMsg clientMsg) {
 
-        ClientMsg clientMsg = new ClientMsg();
+      //  ClientMsg clientMsg = new ClientMsg();
         clientMsg.setDevice(device);
         clientMsg.setIp(request.getRemoteAddr());
-        clientMsg.setName(name);
-        clientMsg.setMtitle(title);
-        clientMsg.setEmail(email);
-        clientMsg.setMessage(message);
+//        clientMsg.setName(name);
+//        clientMsg.setMtitle(title);
+//        clientMsg.setPhone(phone);
+//        clientMsg.setMessage(message);
         clientMsg.setCreateTime(LocalDateTime.now());
         clientMsgMapper.insert(clientMsg);
         //建立邮件消息

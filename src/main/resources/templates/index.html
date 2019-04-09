@@ -300,20 +300,20 @@
 
             <div class="col-md-offset-2 col-md-8 col-sm-12">
                 <!-- CONTACT FORM HERE -->
-                <form id="contact-form" action="/client/client-msg/submitMessage" method="post" role="form">
+                <form id="contact-form" action="/client/submitMessage" method="post" role="form">
 
                     <!-- IF MAIL SENT SUCCESSFULLY -->
                     <h6 class="text-success">您的消息发送成功. </h6>
 
                     <!-- IF MAIL SENDING UNSUCCESSFULL -->
-                    <h6 id="hintMsg" class="text-danger">名字、邮箱和消息必须超过一个字符.</h6>
+                    <h6 id="hintMsg" class="text-danger">名字、电话或消息错误.</h6>
 
                     <div class="col-md-6 col-sm-6">
                         <input type="text" class="form-control" id="name" name="name" placeholder="姓名">
                     </div>
 
                     <div class="col-md-6 col-sm-6">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="邮箱地址">
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="联系电话">
                     </div>
 
                     <div class="col-md-12 col-sm-12">
@@ -379,7 +379,7 @@
                 </div>
             </div>
 
-        </div>.
+        </div>
     </div>
 </footer>
 
@@ -404,9 +404,10 @@
                 status = false
             }
 
-            if ($.trim($("#email").val()).length == 0) {
+            if ($.trim($("#phone").val()).length <11) {
                 status = false
             }
+
 
             if ($.trim($("#message").val()).length == 0) {
                 status = false

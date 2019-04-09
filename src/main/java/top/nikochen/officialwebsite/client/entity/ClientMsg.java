@@ -5,6 +5,9 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -23,12 +26,24 @@ public class ClientMsg implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    /**
+     * 用户真实姓名
+     */
+    @NotEmpty(message="姓名不能为空")
     private String name;
 
-    private String email;
+    /**
+     * 手机号
+     */
+    @Size(min = 11, max=11,message="电话号码必须11位")
+    private String phone;
 
-    private String mtitle;
+    private String title;
 
+    /**
+     * 消息
+     */
+    @NotEmpty(message="消息不能为空")
     private String message;
 
     private String ip;
@@ -52,20 +67,22 @@ public class ClientMsg implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    public String getEmail() {
-        return email;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getMtitle() {
-        return mtitle;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public void setMtitle(String mtitle) {
-        this.mtitle = mtitle;
+    public String getTitle() {
+        return title;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -100,8 +117,8 @@ public class ClientMsg implements Serializable {
         return "ClientMsg{" +
         "id=" + id +
         ", name=" + name +
-        ", email=" + email +
-        ", mtitle=" + mtitle +
+        ", phone=" + phone +
+        ", title=" + title +
         ", message=" + message +
         ", ip=" + ip +
         ", device=" + device +
