@@ -29,7 +29,7 @@ import java.util.List;
  * @author niko
  * @since 2018-12-26
  */
-@Controller
+//@Controller
 @RequestMapping("/client")
 public class ClientMsgController {
 
