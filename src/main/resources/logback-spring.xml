@@ -10,7 +10,7 @@
     <!--<property name="FILE_PATH" value="C:/usr/log/${project_name}.%d{yyyy-MM-dd}.%i.log" />-->
 
     <!--线上地址-->
-    <property name="FILE_PATH" value="/usr/cloudProject/log/${project_name}.%d{yyyy-MM-dd}.%i.log" />
+    <property name="FILE_PATH" value="/Users/niko/IdeaProjects/officialwebsite/log/${project_name}.%d{yyyy-MM-dd}.%i.log" />
 
     <!-- 控制台输出日志 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">

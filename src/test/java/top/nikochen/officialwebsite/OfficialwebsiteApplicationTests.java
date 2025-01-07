@@ -41,7 +41,7 @@ public class OfficialwebsiteApplicationTests {
 		//接收者
 		mainMessage.setTo("1194142140@qq.com");
 		//发送的标题
-		mainMessage.setSubject("小魔头官网咨询");
+		mainMessage.setSubject("hifive 官方");
 		ObjectMapper mapper = new ObjectMapper();
 
 		String data = null;

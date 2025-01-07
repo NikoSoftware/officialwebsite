@@ -1,0 +1,43 @@
+server:
+  port: 80
+beetl:
+  templatesPath: templates
+spring:
+  jmx:
+    enabled: false
+  application:
+    name: xiaomotou-official
+  datasource:
+    url: jdbc:mysql://117.175.149.226:5306/officialwebsite?useUnicode=true&characterEncoding=utf8&useSSL=true
+    username: root
+    password: root@2022
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  mail:
+    host: smtp.exmail.qq.com
+    username: chenzhongqin@qq.com
+    password: Qq1194142140
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+    default-encoding: UTF-8
+    port: 465
+    protocol: smtp
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*/*Mapper.xml
+  type-aliases-package: top.nikochen.officialwebsite.*.entity

@@ -2,16 +2,13 @@ server.port=80
 
 beetl.templatesPath=templates
 
-#项目启动在报tomcat中启动失败问题
 spring.jmx.enabled=false
 spring.application.name=xiaomotou-official
 
-#spring.datasource.url=jdbc:mysql://localhost:3306/officialwebsite?useUnicode=true&characterEncoding=utf8&useSSL=true
-#spring.datasource.password=123456
 
-spring.datasource.url=jdbc:mysql://localhost:3306/officialwebsite?useUnicode=true&characterEncoding=utf8&useSSL=true
+spring.datasource.url=jdbc:mysql://47.108.136.193:3306/officialwebsite?useUnicode=true&characterEncoding=utf8&useSSL=true
 spring.datasource.username=root
-spring.datasource.password=123456
+spring.datasource.password=root@2022
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 spring.datasource.type=com.zaxxer.hikari.HikariDataSource
@@ -24,31 +21,23 @@ spring.datasource.hikari.max-lifetime=1800000
 spring.datasource.hikari.connection-timeout=30000
 spring.datasource.hikari.connection-test-query=SELECT 1
 
-#spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
-# \u521D\u59CB\u5316\u5927\u5C0F\uFF0C\u6700\u5C0F\uFF0C\u6700\u5927
-#spring.datasource.initialSize=5
-#spring.datasource.minIdle=5
-#spring.datasource.maxActive=20
-## \u914D\u7F6E\u83B7\u53D6\u8FDE\u63A5\u7B49\u5F85\u8D85\u65F6\u7684\u65F6\u95F4
-#spring.datasource.maxWait=60000
 
 
-#mybatis-plus
+
+
 mybatis-plus.mapper-locations = classpath:/mapper/*/*Mapper.xml
 mybatis-plus.type-aliases-package=top.nikochen.officialwebsite.*.entity
 
 
 
-#邮箱
+
 spring.mail.host=smtp.exmail.qq.com
-#发送方的邮箱
-spring.mail.username=chenzhongqin@hifive.ai
-#对于qq邮箱而言 密码指的就是发送方的授权码
+spring.mail.username=chenzhongqin@qq.com
+
 spring.mail.password=Qq1194142140
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
 spring.mail.properties.mail.smtp.starttls.required=true
-#编码类型
 spring.mail.default-encoding=UTF-8
 spring.mail.port=465
 spring.mail.protocol=smtp
